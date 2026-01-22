@@ -1,9 +1,9 @@
-# English (United States) translation for Soli Admin Theme
+# English (United States) translation for Soli Clean Theme
 # Copyright (C) 2024 Muziekvereniging Soli
 # This file is distributed under the GNU General Public License v3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Soli Admin Theme 1.0.0\n"
+"Project-Id-Version: Soli Clean Theme 1.0.0\n"
 "Report-Msgid-Bugs-To: https://soli.nl\n"
 "POT-Creation-Date: 2024-01-01T00:00:00+00:00\n"
 "PO-Revision-Date: 2024-01-01T00:00:00+00:00\n"

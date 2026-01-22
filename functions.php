@@ -1,8 +1,8 @@
 <?php
 /**
- * Soli Admin Theme functions and definitions.
+ * Soli Clean Theme functions and definitions.
  *
- * @package Soli_Admin_Theme
+ * @package Soli_Clean_Theme
  * @since 1.0.0
  */
 
@@ -14,7 +14,7 @@ defined( 'ABSPATH' ) || exit;
  * @since 1.0.0
  */
 function soli_admin_theme_setup(): void {
-    load_theme_textdomain( 'soli-admin-theme', get_template_directory() . '/languages' );
+    load_theme_textdomain( 'soli-clean-theme', get_template_directory() . '/languages' );
 
     add_theme_support( 'title-tag' );
     add_theme_support( 'html5', array( 'style', 'script' ) );
@@ -28,7 +28,7 @@ add_action( 'after_setup_theme', 'soli_admin_theme_setup' );
  */
 function soli_admin_theme_enqueue_styles(): void {
     wp_enqueue_style(
-        'soli-admin-theme-style',
+        'soli-clean-theme-style',
         get_stylesheet_uri(),
         array(),
         wp_get_theme()->get( 'Version' )
@@ -56,8 +56,8 @@ add_action( 'template_redirect', 'soli_admin_theme_require_login' );
  */
 function soli_admin_theme_login_init(): void {
     load_textdomain(
-        'soli-admin-theme',
-        get_template_directory() . '/languages/soli-admin-theme-' . determine_locale() . '.mo'
+        'soli-clean-theme',
+        get_template_directory() . '/languages/soli-clean-theme-' . determine_locale() . '.mo'
     );
 }
 add_action( 'login_init', 'soli_admin_theme_login_init' );
@@ -69,7 +69,7 @@ add_action( 'login_init', 'soli_admin_theme_login_init' );
  */
 function soli_admin_theme_login_styles(): void {
     wp_enqueue_style(
-        'soli-admin-theme-login',
+        'soli-clean-theme-login',
         get_stylesheet_uri(),
         array(),
         wp_get_theme()->get( 'Version' )
@@ -85,8 +85,8 @@ add_action( 'login_enqueue_scripts', 'soli_admin_theme_login_styles' );
  * @return string
  */
 function soli_admin_theme_login_message( string $message ): string {
-    $title    = esc_html__( 'Soli Administration', 'soli-admin-theme' );
-    $subtitle = esc_html__( 'Administration and Authentication', 'soli-admin-theme' );
+    $title    = esc_html__( 'Soli Administration', 'soli-clean-theme' );
+    $subtitle = esc_html__( 'Administration and Authentication', 'soli-clean-theme' );
 
     $custom_header  = '<h1 class="soli-login-title">' . $title . '</h1>';
     $custom_header .= '<p class="soli-login-subtitle">' . $subtitle . '</p>';
@@ -217,3 +217,41 @@ add_filter( 'pings_open', '__return_false', 20 );
  * @return array
  */
 add_filter( 'comments_array', '__return_empty_array', 10 );
+
+/**
+ * Default front-end content.
+ *
+ * Displays basic user information. Plugins can remove this action
+ * and provide their own content via the soli_admin_content hook.
+ *
+ * @since 1.0.0
+ */
+function soli_admin_default_content(): void {
+	$current_user = wp_get_current_user();
+	?>
+	<h1><?php esc_html_e( 'Soli Administration', 'soli-clean-theme' ); ?></h1>
+	<p class="soli-subtitle"><?php esc_html_e( 'Your account information', 'soli-clean-theme' ); ?></p>
+
+	<div class="soli-user-info">
+		<div class="soli-user-field">
+			<label><?php esc_html_e( 'Username', 'soli-clean-theme' ); ?></label>
+			<span><?php echo esc_html( $current_user->user_login ); ?></span>
+		</div>
+
+		<div class="soli-user-field">
+			<label><?php esc_html_e( 'Email address', 'soli-clean-theme' ); ?></label>
+			<span><?php echo esc_html( $current_user->user_email ); ?></span>
+		</div>
+	</div>
+
+	<div class="soli-actions">
+		<a href="<?php echo esc_url( wp_lostpassword_url( home_url() ) ); ?>" class="soli-btn-primary">
+			<?php esc_html_e( 'Reset password', 'soli-clean-theme' ); ?>
+		</a>
+		<a href="<?php echo esc_url( wp_logout_url( home_url() ) ); ?>" class="soli-btn-secondary">
+			<?php esc_html_e( 'Log out', 'soli-clean-theme' ); ?>
+		</a>
+	</div>
+	<?php
+}
+add_action( 'soli_admin_content', 'soli_admin_default_content' );

@@ -2,13 +2,11 @@
 /**
  * Main template file - User Dashboard.
  *
- * @package Soli_Admin_Theme
+ * @package Soli_Clean_Theme
  * @since 1.0.0
  */
 
 defined( 'ABSPATH' ) || exit;
-
-$current_user = wp_get_current_user();
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -21,29 +19,28 @@ $current_user = wp_get_current_user();
 <?php wp_body_open(); ?>
 
 <main class="soli-admin-dashboard">
-    <h1><?php esc_html_e( 'Soli Administration', 'soli-admin-theme' ); ?></h1>
-    <p class="soli-subtitle"><?php esc_html_e( 'Your account information', 'soli-admin-theme' ); ?></p>
+    <?php
+    /**
+     * Fires before the main content area.
+     *
+     * @since 1.0.0
+     */
+    do_action( 'soli_admin_before_content' );
 
-    <div class="soli-user-info">
-        <div class="soli-user-field">
-            <label><?php esc_html_e( 'Username', 'soli-admin-theme' ); ?></label>
-            <span><?php echo esc_html( $current_user->user_login ); ?></span>
-        </div>
+    /**
+     * Fires in the main content area.
+     *
+     * @since 1.0.0
+     */
+    do_action( 'soli_admin_content' );
 
-        <div class="soli-user-field">
-            <label><?php esc_html_e( 'Email address', 'soli-admin-theme' ); ?></label>
-            <span><?php echo esc_html( $current_user->user_email ); ?></span>
-        </div>
-    </div>
-
-    <div class="soli-actions">
-        <a href="<?php echo esc_url( wp_lostpassword_url( home_url() ) ); ?>" class="soli-btn-primary">
-            <?php esc_html_e( 'Reset password', 'soli-admin-theme' ); ?>
-        </a>
-        <a href="<?php echo esc_url( wp_logout_url( home_url() ) ); ?>" class="soli-btn-secondary">
-            <?php esc_html_e( 'Log out', 'soli-admin-theme' ); ?>
-        </a>
-    </div>
+    /**
+     * Fires after the main content area.
+     *
+     * @since 1.0.0
+     */
+    do_action( 'soli_admin_after_content' );
+    ?>
 </main>
 
 <?php wp_footer(); ?>

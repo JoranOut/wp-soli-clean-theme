@@ -15,6 +15,6 @@
 		"wp-content/debug.log": "./debug.log"
 	},
 	"lifecycleScripts": {
-		"afterStart": "wp-env run cli wp theme activate wp-soli-admin-theme"
+		"afterStart": "wp-env run cli wp theme activate wp-soli-clean-theme && wp-env run tests-cli wp theme activate wp-soli-clean-theme"
 	}
 }

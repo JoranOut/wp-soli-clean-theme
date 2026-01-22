@@ -12,3 +12,9 @@ Thumbs.db
 
 # Node (if using build tools)
 node_modules/
+package-lock.json
+
+# Playwright
+/test-results/
+/playwright-report/
+/playwright/.cache/

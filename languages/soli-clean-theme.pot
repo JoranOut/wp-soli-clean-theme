@@ -1,44 +1,41 @@
-# Dutch (Netherlands) translation for Soli Admin Theme
 # Copyright (C) 2024 Muziekvereniging Soli
 # This file is distributed under the GNU General Public License v3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Soli Admin Theme 1.0.0\n"
+"Project-Id-Version: Soli Clean Theme 1.0.0\n"
 "Report-Msgid-Bugs-To: https://soli.nl\n"
 "POT-Creation-Date: 2024-01-01T00:00:00+00:00\n"
-"PO-Revision-Date: 2024-01-01T00:00:00+00:00\n"
-"Last-Translator: Soli Webteam <web@soli.nl>\n"
-"Language-Team: Dutch <web@soli.nl>\n"
-"Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 
 #: functions.php:77 index.php:23
 msgid "Soli Administration"
-msgstr "Soli Administratie"
+msgstr ""
 
 #: functions.php:78
 msgid "Administration and Authentication"
-msgstr "Administratie en Authenticatie"
+msgstr ""
 
 #: index.php:24
 msgid "Your account information"
-msgstr "Jouw accountgegevens"
+msgstr ""
 
 #: index.php:28
 msgid "Username"
-msgstr "Gebruikersnaam"
+msgstr ""
 
 #: index.php:33
 msgid "Email address"
-msgstr "E-mailadres"
+msgstr ""
 
 #: index.php:40
 msgid "Reset password"
-msgstr "Wachtwoord herstellen"
+msgstr ""
 
 #: index.php:43
 msgid "Log out"
-msgstr "Uitloggen"
+msgstr ""

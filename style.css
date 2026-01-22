@@ -1,16 +1,16 @@
 /*
-Theme Name: Soli Admin Theme
+Theme Name: Soli Clean Theme
 Theme URI: https://admin.soli.nl
 Author: Muziekvereniging Soli
 Author URI: https://soli.nl
-Description: Minimal administration theme for admin.soli.nl - provides authentication redirect and user dashboard.
+Description: Minimal clean theme for admin.soli.nl - strips wp-admin of default entities and enforces front-end authentication.
 Version: 1.0.0
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.0
 License: GNU General Public License v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
-Text Domain: soli-admin-theme
+Text Domain: soli-clean-theme
 Domain Path: /languages
 */
 
