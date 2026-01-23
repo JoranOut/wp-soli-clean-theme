@@ -9,6 +9,13 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
+ * Theme version constant.
+ *
+ * @since 1.0.0
+ */
+define( 'SOLI_CLEAN_THEME_VERSION', '1.0.0' );
+
+/**
  * Theme setup.
  *
  * @since 1.0.0
@@ -31,7 +38,7 @@ function soli_admin_theme_enqueue_styles(): void {
         'soli-clean-theme-style',
         get_stylesheet_uri(),
         array(),
-        wp_get_theme()->get( 'Version' )
+        SOLI_CLEAN_THEME_VERSION
     );
 }
 add_action( 'wp_enqueue_scripts', 'soli_admin_theme_enqueue_styles' );
@@ -72,7 +79,7 @@ function soli_admin_theme_login_styles(): void {
         'soli-clean-theme-login',
         get_stylesheet_uri(),
         array(),
-        wp_get_theme()->get( 'Version' )
+        SOLI_CLEAN_THEME_VERSION
     );
 }
 add_action( 'login_enqueue_scripts', 'soli_admin_theme_login_styles' );
@@ -255,3 +262,29 @@ function soli_admin_default_content(): void {
 	<?php
 }
 add_action( 'soli_admin_content', 'soli_admin_default_content' );
+
+/**
+ * Initialize GitHub theme updater.
+ *
+ * @since 1.0.0
+ */
+function soli_admin_theme_github_updater(): void {
+	include_once get_template_directory() . '/updater.php';
+
+	if ( class_exists( 'Soli\CleanTheme\WP_GitHub_Theme_Updater' ) ) {
+		$config = array(
+			'slug'         => 'wp-soli-clean-theme',
+			'api_url'      => 'https://api.github.com/repos/Muziekvereniging-Soli/wp-soli-clean-theme',
+			'raw_url'      => 'https://raw.github.com/Muziekvereniging-Soli/wp-soli-clean-theme/main',
+			'github_url'   => 'https://github.com/Muziekvereniging-Soli/wp-soli-clean-theme',
+			'zip_url'      => 'https://github.com/Muziekvereniging-Soli/wp-soli-clean-theme/releases/latest/download/wp-soli-clean-theme.zip',
+			'requires'     => '6.0.0',
+			'tested'       => '6.7.0',
+			'requires_php' => '8.0',
+			'readme'       => 'README.md',
+		);
+
+		new \Soli\CleanTheme\WP_GitHub_Theme_Updater( $config );
+	}
+}
+add_action( 'init', 'soli_admin_theme_github_updater' );
