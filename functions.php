@@ -13,7 +13,7 @@ defined( 'ABSPATH' ) || exit;
  *
  * @since 1.0.0
  */
-define( 'SOLI_CLEAN_THEME_VERSION', '1.0.0' );
+define( 'SOLI_CLEAN_THEME_VERSION', '1.0.1' );
 
 /**
  * Theme setup.
@@ -88,17 +88,17 @@ add_action( 'login_enqueue_scripts', 'soli_admin_theme_login_styles' );
  * Add custom heading above the login form.
  *
  * @since 1.0.0
- * @param string $message Login message.
+ * @param string|null $message Login message.
  * @return string
  */
-function soli_admin_theme_login_message( string $message ): string {
-    $title    = esc_html__( 'Soli Administration', 'soli-clean-theme' );
-    $subtitle = esc_html__( 'Administration and Authentication', 'soli-clean-theme' );
+function soli_admin_theme_login_message( ?string $message ): string {
+    $title    = get_bloginfo( 'name' );
+    $subtitle = get_bloginfo( 'description' );
 
-    $custom_header  = '<h1 class="soli-login-title">' . $title . '</h1>';
-    $custom_header .= '<p class="soli-login-subtitle">' . $subtitle . '</p>';
+    $custom_header  = '<h1 class="soli-login-title">' . esc_html( $title ) . '</h1>';
+    $custom_header .= '<p class="soli-login-subtitle">' . esc_html( $subtitle ) . '</p>';
 
-    return $custom_header . $message;
+    return $custom_header . ( $message ?? '' );
 }
 add_filter( 'login_message', 'soli_admin_theme_login_message' );
 
@@ -228,12 +228,23 @@ add_filter( 'comments_array', '__return_empty_array', 10 );
 /**
  * Default front-end content.
  *
- * Displays basic user information. Plugins can remove this action
- * and provide their own content via the soli_admin_content hook.
+ * Displays basic user information. Plugins can disable this by filtering
+ * 'soli_admin_show_default_content' to false when they provide their own content.
  *
  * @since 1.0.0
  */
 function soli_admin_default_content(): void {
+	/**
+	 * Filters whether to show the default user info content.
+	 *
+	 * Plugins should return false when they provide their own front-end content.
+	 *
+	 * @since 1.0.0
+	 * @param bool $show Whether to show default content. Default true.
+	 */
+	if ( ! apply_filters( 'soli_admin_show_default_content', true ) ) {
+		return;
+	}
 	$current_user = wp_get_current_user();
 	?>
 	<h1><?php esc_html_e( 'Soli Administration', 'soli-clean-theme' ); ?></h1>

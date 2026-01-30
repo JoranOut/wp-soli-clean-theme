@@ -1,7 +1,7 @@
 # Soli Clean Theme
 
 ~Plugin Name: wp-soli-clean-theme~
-~Current Version:1.0.0~
+~Current Version:1.0.1~
 
 A minimal WordPress theme for `admin.soli.nl` that strips away default WordPress entities and provides a clean, extensible administration interface.
 

@@ -9,12 +9,13 @@
 	"config": {
 		"WP_DEBUG": true,
 		"WP_DEBUG_LOG": true,
+		"WP_DEBUG_DISPLAY": true,
 		"SCRIPT_DEBUG": true
 	},
 	"mappings": {
 		"wp-content/debug.log": "./debug.log"
 	},
 	"lifecycleScripts": {
-		"afterStart": "wp-env run cli wp theme activate wp-soli-clean-theme && wp-env run tests-cli wp theme activate wp-soli-clean-theme"
+		"afterStart": "wp-env run cli -- wp theme activate wp-soli-clean-theme && wp-env run cli -- wp option update blogname 'Soli Administration' && wp-env run cli -- wp option update blogdescription 'Administration and Authentication' && wp-env run tests-cli -- wp theme activate wp-soli-clean-theme && wp-env run tests-cli -- wp option update blogname 'Soli Administration' && wp-env run tests-cli -- wp option update blogdescription 'Administration and Authentication'"
 	}
 }
