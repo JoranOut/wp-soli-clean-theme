@@ -35,7 +35,7 @@ jobs:
           echo "nightly_version=${NIGHTLY_VERSION}" >> $GITHUB_OUTPUT
           echo "date=${DATE}" >> $GITHUB_OUTPUT
 
-      - name: Build theme
+      - name: Build package
         run: |
           # Skip i18n build for nightly (no wp-env in CI for this)
           node ./publish.js
@@ -64,4 +64,4 @@ jobs:
 
           This is a pre-release build for testing purposes." \
             --prerelease \
-            wp-soli-clean-theme.zip
+            *.zip
