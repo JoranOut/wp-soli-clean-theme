@@ -25,9 +25,9 @@ test.describe('Front-end authentication', () => {
 	test('should show custom login header', async ({ page }) => {
 		await page.goto('/wp-login.php');
 
-		// Check for custom login title
-		await expect(page.locator('h1.soli-login-title')).toContainText('Soli Administration');
-		await expect(page.locator('p.soli-login-subtitle')).toContainText('Administration and Authentication');
+		// Check for custom login title (supports both English and Dutch)
+		await expect(page.locator('h1.soli-login-title')).toHaveText(/Soli Administrat(ion|ie)/);
+		await expect(page.locator('p.soli-login-subtitle')).toHaveText(/Administration and Authentication|Administratie en Authenticatie/);
 	});
 
 	test('should allow logged-in users to access front-end', async ({ page, context }) => {
@@ -66,14 +66,14 @@ test.describe('Front-end authentication', () => {
 		// Wait for dashboard to load
 		await page.waitForSelector('main.soli-admin-dashboard');
 
-		// Check default content is displayed
-		await expect(page.locator('h1')).toContainText('Soli Administration');
+		// Check default content is displayed (supports both English and Dutch)
+		await expect(page.locator('h1')).toHaveText(/Soli Administrat(ion|ie)/);
 
 		// Verify user fields are present
 		await expect(page.locator('.soli-user-field')).toHaveCount(2); // Username and Email
 
-		// Verify action buttons
-		await expect(page.locator('a.soli-btn-primary')).toContainText('Reset password');
-		await expect(page.locator('a.soli-btn-secondary')).toContainText('Log out');
+		// Verify action buttons (supports both English and Dutch)
+		await expect(page.locator('a.soli-btn-primary')).toHaveText(/Reset password|Wachtwoord herstellen/);
+		await expect(page.locator('a.soli-btn-secondary')).toHaveText(/Log out|Uitloggen/);
 	});
 });

@@ -42,3 +42,7 @@ msgstr "Wachtwoord herstellen"
 #: index.php:43
 msgid "Log out"
 msgstr "Uitloggen"
+
+#: functions.php:109
+msgid "Welcome! This login is for Soli members only."
+msgstr "Welkom! Deze login is alleen voor leden van Soli."

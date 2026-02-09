@@ -21,7 +21,10 @@ define( 'SOLI_CLEAN_THEME_VERSION', '1.0.2' );
  * @since 1.0.0
  */
 function soli_admin_theme_setup(): void {
-    load_theme_textdomain( 'soli-clean-theme', get_template_directory() . '/languages' );
+    load_textdomain(
+        'soli-clean-theme',
+        get_template_directory() . '/languages/soli-clean-theme-' . determine_locale() . '.mo'
+    );
 
     add_theme_support( 'title-tag' );
     add_theme_support( 'html5', array( 'style', 'script' ) );
@@ -97,6 +100,21 @@ function soli_admin_theme_login_message( ?string $message ): string {
 
     $custom_header  = '<h1 class="soli-login-title">' . esc_html( $title ) . '</h1>';
     $custom_header .= '<p class="soli-login-subtitle">' . esc_html( $subtitle ) . '</p>';
+
+    /**
+     * Filters the login welcome message displayed below the site title.
+     *
+     * @since 1.0.3
+     * @param string $welcome_message The welcome message text.
+     */
+    $welcome_message = apply_filters(
+        'soli_admin_login_welcome_message',
+        __( 'Welcome! This login is for Soli members only.', 'soli-clean-theme' )
+    );
+
+    if ( ! empty( $welcome_message ) ) {
+        $custom_header .= '<p class="soli-login-welcome">' . esc_html( $welcome_message ) . '</p>';
+    }
 
     return $custom_header . ( $message ?? '' );
 }
